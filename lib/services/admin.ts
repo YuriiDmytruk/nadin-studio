@@ -1,4 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
+import { AdminUser } from '@/types/admin-user'
+import { isRefreshTokenError, clearAuthCookies } from '@/lib/supabase/auth-helpers'
+import { redirect } from 'next/navigation'
 
 /**
  * Check if the current user is an admin
@@ -10,6 +13,12 @@ export async function isAdmin(): Promise<boolean> {
 
         // First check if user is authenticated
         const { data: { user }, error: userError } = await supabase.auth.getUser()
+
+        // Handle refresh token error
+        if (userError && isRefreshTokenError(userError)) {
+            await clearAuthCookies()
+            redirect('/login')
+        }
 
         if (userError || !user) {
             return false
@@ -34,12 +43,19 @@ export async function isAdmin(): Promise<boolean> {
 
 /**
  * Get admin user data
+ * Returns AdminUser if the current user is an admin, null otherwise
  */
-export async function getAdminUser() {
+export async function getAdminUser(): Promise<AdminUser | null> {
     try {
         const supabase = await createClient()
 
         const { data: { user }, error: userError } = await supabase.auth.getUser()
+
+        // Handle refresh token error
+        if (userError && isRefreshTokenError(userError)) {
+            await clearAuthCookies()
+            redirect('/login')
+        }
 
         if (userError || !user) {
             return null
@@ -55,7 +71,10 @@ export async function getAdminUser() {
             return null
         }
 
-        return { ...data, user }
+        return {
+            userUID: data.userUID,
+            user,
+        }
     } catch (error) {
         return null
     }

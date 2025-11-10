@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { isRefreshTokenError } from './auth-helpers'
 
 export async function updateSession(request: NextRequest) {
     let supabaseResponse = NextResponse.next({
@@ -35,6 +36,20 @@ export async function updateSession(request: NextRequest) {
         data: { user },
         error: userError,
     } = await supabase.auth.getUser()
+
+    // Handle refresh token error - clear cookies and redirect to login
+    if (userError && isRefreshTokenError(userError)) {
+        // Clear all Supabase auth cookies
+        const allCookies = request.cookies.getAll()
+        allCookies.forEach(cookie => {
+            if (
+                cookie.name.startsWith('sb-') ||
+                cookie.name.includes('supabase')
+            ) {
+                supabaseResponse.cookies.delete(cookie.name)
+            }
+        })
+    }
 
     // Admin routes are handled by the admin layout
     // Middleware just refreshes the session
