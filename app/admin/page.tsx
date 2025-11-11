@@ -51,10 +51,9 @@ export default function AdminPage() {
   return (
     <SidebarProvider>
       <AdminSidebar activeView={activeView === 'edit' ? 'list' : activeView} onViewChange={handleViewChange} />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+      <SidebarInset >
+        <header className="flex h-16 shrink-0 items-center gap-2 border-gray-200! border-b px-4">
           <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
           <div className="flex flex-1 items-center justify-between">
             <h1 className="text-lg font-semibold">Admin Dashboard</h1>
             <Button onClick={handleLogout} variant="outline" size="sm">

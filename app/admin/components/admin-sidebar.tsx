@@ -21,10 +21,10 @@ interface AdminSidebarProps {
 
 export function AdminSidebar({ activeView, onViewChange }: AdminSidebarProps) {
     return (
-        <Sidebar>
+        <Sidebar variant="inset">
             <SidebarHeader>
                 <div className="px-2 py-4">
-                    <h2 className="text-lg font-semibold">Products</h2>
+                    <h2 className="text-lg font-semibold">Nadin Studio</h2>
                 </div>
             </SidebarHeader>
             <SidebarContent>

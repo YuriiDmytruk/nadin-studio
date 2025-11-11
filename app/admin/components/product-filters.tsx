@@ -95,9 +95,9 @@ export default function ProductFiltersComponent({
         <Card className="p-6 bg-white/80 backdrop-blur-sm border-2 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div className="space-y-6">
                 {/* Header */}
-                <div className="flex items-center gap-2 pb-2 border-b border-purple-100">
+                <div className="flex items-center gap-2 pb-2 border-gray-200! border-b border-purple-100">
                     <Filter className="h-5 w-5 text-purple-600" />
-                    <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <h2 className="text-xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                         Filter Products
                     </h2>
                     {hasActiveFilters && (
@@ -146,14 +146,13 @@ export default function ProductFiltersComponent({
                                     size="sm"
                                     onClick={() => toggleType(type)}
                                     className={`
-                                        transition-all duration-200 font-medium
+                                        transition-all duration-200 font-medium cursor-pointer
                                         ${isSelected
-                                            ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md hover:shadow-lg hover:scale-105'
+                                            ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-md hover:shadow-lg hover:scale-105'
                                             : 'hover:bg-purple-50 hover:border-purple-300 hover:text-purple-700 border-2'
                                         }
                                     `}
                                 >
-                                    {isSelected && <Sparkles className="h-3 w-3" />}
                                     {type.charAt(0).toUpperCase() + type.slice(1)}
                                 </Button>
                             )
@@ -202,19 +201,18 @@ export default function ProductFiltersComponent({
                                         onClick={() => toggleColor(color)}
                                         className={`
                                             relative flex items-center gap-2 px-3 py-2 rounded-lg font-medium text-sm
-                                            transition-all duration-200 border-2
+                                            transition-all duration-200 border border-gray-200!
                                             ${isSelected
-                                                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md hover:shadow-lg scale-105 border-transparent'
+                                                ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-md hover:shadow-lg scale-105 border-transparent'
                                                 : 'bg-white hover:bg-purple-50 border-slate-200 hover:border-purple-300 text-slate-700 hover:scale-105'
                                             }
                                         `}
                                     >
                                         <div
-                                            className="w-4 h-4 rounded-full border-2 border-white shadow-sm"
+                                            className="w-4 h-4 rounded-full shadow-sm"
                                             style={{ backgroundColor: colorHex }}
                                         />
                                         {displayName}
-                                        {isSelected && <Sparkles className="h-3 w-3" />}
                                     </button>
                                 )
                             })}

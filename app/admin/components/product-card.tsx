@@ -21,7 +21,7 @@ export default function ProductCard({ product, onEdit, onDelete }: ProductCardPr
         <Card className="w-full bg-white/80 backdrop-blur-sm border-2 shadow-md">
             <div className="flex gap-6 p-6">
                 {/* Image */}
-                <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-purple-100 to-pink-100 border-2 border-purple-200 shadow-lg">
+                <div className="relative w-40 aspect-4/5 shrink-0 overflow-hidden rounded-xl bg-linear-to-br from-purple-100 to-pink-100 border border-slate-200! shadow-lg">
                     {firstImage ? (
                         <img
                             src={firstImage}
@@ -43,13 +43,13 @@ export default function ProductCard({ product, onEdit, onDelete }: ProductCardPr
                                 {product.name}
                             </h3>
                             <div className="inline-flex items-center gap-2">
-                                <span className="px-3 py-1 text-xs font-semibold bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full border border-purple-200 capitalize">
+                                <span className="px-3 py-1 text-xs font-semibold bg-linear-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full border border-purple-200 capitalize">
                                     {product.setType}
                                 </span>
                             </div>
                         </div>
                         {product.price !== null && (
-                            <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                            <div className="text-2xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                                 ${product.price.toFixed(2)}
                             </div>
                         )}
@@ -70,10 +70,10 @@ export default function ProductCard({ product, onEdit, onDelete }: ProductCardPr
                                 return (
                                     <div
                                         key={index}
-                                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 hover:border-purple-300 transition-colors"
+                                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200! hover:border-purple-300 transition-colors"
                                     >
                                         <div
-                                            className="w-3 h-3 rounded-full border border-white shadow-sm"
+                                            className="w-3 h-3 rounded-full shadow-sm"
                                             style={{ backgroundColor: colorHex }}
                                         />
                                         <span className="text-xs font-medium text-slate-700">{displayName}</span>
@@ -83,23 +83,21 @@ export default function ProductCard({ product, onEdit, onDelete }: ProductCardPr
                         </div>
                     )}
 
-                    <div className="mt-auto flex gap-3 pt-2">
+                    <div className="mt-auto flex gap-2 pt-2">
                         <Button
                             variant="outline"
-                            size="sm"
                             onClick={() => onEdit(product)}
-                            className="flex-1 border-2 border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:text-purple-700 font-semibold transition-all"
+                            className="h-7 px-2.5 text-xs border border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:text-purple-700 font-medium transition-all"
                         >
-                            <Pencil className="size-4" />
+                            <Pencil className="size-3 mr-1" />
                             Edit
                         </Button>
                         <Button
                             variant="destructive"
-                            size="sm"
                             onClick={() => onDelete(product.id)}
-                            className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold shadow-md hover:shadow-lg transition-all"
+                            className="h-7 px-2.5 text-xs bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-medium shadow-sm hover:shadow transition-all"
                         >
-                            <Trash2 className="size-4" />
+                            <Trash2 className="size-3 mr-1" />
                             Delete
                         </Button>
                     </div>

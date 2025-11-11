@@ -194,12 +194,12 @@ export default function AddProduct() {
     return (
         <Card className="p-8 bg-white/80 backdrop-blur-sm border-2 shadow-lg">
             {/* Header */}
-            <div className="flex items-center gap-3 mb-8 pb-4 border-b border-purple-100">
-                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-lg">
+            <div className="flex items-center gap-3 mb-8 pb-4 border-b border-purple-100!">
+                <div className="h-12 w-12 rounded-xl bg-linear-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-lg">
                     <Package className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <h2 className="text-3xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                         Add New Product
                     </h2>
                     <p className="text-sm text-slate-600 mt-1">Fill in the details to create a new product</p>
@@ -209,7 +209,7 @@ export default function AddProduct() {
             <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Error Message */}
                 {error && (
-                    <div className="p-4 rounded-xl bg-red-50 border-2 border-red-200 flex items-start gap-3">
+                    <div className="p-4 rounded-xl bg-red-50 border border-red-200! flex items-start gap-3">
                         <AlertCircle className="h-5 w-5 text-red-600 shrink-0 mt-0.5" />
                         <div className="flex-1">
                             <p className="text-sm font-semibold text-red-900">Error</p>
@@ -288,12 +288,11 @@ export default function AddProduct() {
                                     className={`
                                         transition-all duration-200 font-medium
                                         ${isSelected
-                                            ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md hover:shadow-lg hover:scale-105'
+                                            ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-md hover:shadow-lg hover:scale-105'
                                             : 'hover:bg-purple-50 hover:border-purple-300 hover:text-purple-700 border-2'
                                         }
                                     `}
                                 >
-                                    {isSelected && <Sparkles className="h-3 w-3" />}
                                     {type.charAt(0).toUpperCase() + type.slice(1)}
                                 </Button>
                             )
@@ -317,7 +316,7 @@ export default function AddProduct() {
                                         type="color"
                                         value={selectedColorHex}
                                         onChange={(e) => setSelectedColorHex(e.target.value)}
-                                        className="h-12 w-20 cursor-pointer rounded-lg border-2 border-purple-200 shadow-sm hover:shadow-md transition-all"
+                                        className="h-12 w-20 cursor-pointer radius-full shadow-sm hover:shadow-md transition-all"
                                     />
                                 </div>
                             </div>
@@ -365,21 +364,20 @@ export default function AddProduct() {
                                 <p className="text-xs font-medium text-slate-600">
                                     Selected Colors ({colors.length})
                                 </p>
-                                <div className="flex flex-wrap gap-2 p-4 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-100">
+                                <div className="flex flex-wrap gap-2 p-4 rounded-xl bg-linear-to-br from-purple-50 to-pink-50 border border-purple-100!">
                                     {colors.map((colorHex, index) => {
                                         const displayName = getColorDisplayName(colorHex)
                                         return (
                                             <div
                                                 key={index}
-                                                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white border-2 border-purple-200 shadow-sm hover:shadow-md transition-all group"
+                                                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white border border-purple-200! shadow-sm hover:shadow-md transition-all group"
                                             >
                                                 <div
-                                                    className="w-5 h-5 rounded-full border-2 border-white shadow-sm ring-1 ring-slate-200"
+                                                    className="w-5 h-5 rounded-full shadow-sm ring-1 ring-slate-200"
                                                     style={{ backgroundColor: colorHex }}
                                                 />
                                                 <div className="flex flex-col">
                                                     <span className="text-sm font-semibold text-slate-900">{displayName}</span>
-                                                    <span className="text-xs font-mono text-slate-500">{colorHex}</span>
                                                 </div>
                                                 <button
                                                     type="button"
@@ -411,7 +409,7 @@ export default function AddProduct() {
                                     <p className="mb-2 text-sm font-semibold text-slate-700">
                                         <span className="text-purple-600">Click to upload</span> or drag and drop
                                     </p>
-                                    <p className="text-xs text-slate-500">Max 5MB per image. Multiple images allowed.</p>
+                                    <p className="text-xs text-slate-500">Max 10MB per image. Multiple images allowed.</p>
                                 </div>
                                 <Input
                                     type="file"
@@ -426,11 +424,11 @@ export default function AddProduct() {
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 {images.map((image, index) => (
                                     <div key={index} className="relative group">
-                                        <div className="relative aspect-square overflow-hidden rounded-xl bg-gradient-to-br from-purple-100 to-pink-100 border-2 border-purple-200 shadow-md hover:shadow-xl transition-all">
+                                        <div className="relative aspect-4/5 overflow-hidden rounded-xl bg-linear-to-br from-purple-100 to-pink-100 border border-purple-200! shadow-md hover:shadow-xl transition-all">
                                             <img
                                                 src={URL.createObjectURL(image)}
                                                 alt={`Preview ${index + 1}`}
-                                                className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                                className="h-full w-full object-cover transition-transform duration-300"
                                             />
                                             <button
                                                 type="button"
@@ -439,7 +437,7 @@ export default function AddProduct() {
                                             >
                                                 <X className="size-4" />
                                             </button>
-                                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent p-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <p className="text-xs text-white font-medium truncate">
                                                     {image.name}
                                                 </p>

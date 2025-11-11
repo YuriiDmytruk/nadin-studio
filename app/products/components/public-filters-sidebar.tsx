@@ -90,9 +90,9 @@ export default function PublicFiltersSidebar({
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex items-center gap-2 pb-4 border-b border-slate-200">
+            <div className="flex items-center gap-2 pb-4 border-b border-slate-200!">
                 <Filter className="h-5 w-5 text-purple-600" />
-                <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <h2 className="text-xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                     Filters
                 </h2>
                 {hasActiveFilters && (
@@ -140,12 +140,11 @@ export default function PublicFiltersSidebar({
                                 variant={isSelected ? 'default' : 'outline'}
                                 size="sm"
                                 onClick={() => toggleType(type)}
-                                className={`w-full justify-start transition-all duration-200 ${isSelected
-                                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md hover:shadow-lg'
-                                        : 'hover:bg-purple-50 hover:border-purple-300 hover:text-purple-700 border-2'
+                                className={`w-full justify-start transition-all duration-200 cursor-pointer ${isSelected
+                                    ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-md hover:shadow-lg'
+                                    : 'hover:bg-purple-50 hover:border-purple-300 hover:text-purple-700 border-2'
                                     }`}
                             >
-                                {isSelected && <Sparkles className="h-3 w-3 mr-2" />}
                                 {type.charAt(0).toUpperCase() + type.slice(1)}
                             </Button>
                         )
